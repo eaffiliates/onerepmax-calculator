@@ -183,7 +183,7 @@ class OneRMWidget {
         
         ${this.config.showBranding ? `
           <div class="branding">
-            Powered by <a href="https://1rmcalculator.com" target="_blank">1RM Calculator</a>
+            Powered by <a href="https://1rmcalculate.com" target="_blank">1RM Calculator</a>
           </div>
         ` : ''}
       </div>

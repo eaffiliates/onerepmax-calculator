@@ -75,7 +75,7 @@ Add this to your HTML:
 
 ```html
 <div data-1rm-widget data-unit="kg" data-theme="light"></div>
-<script src="https://1rmcalculator.com/widget.js"></script>
+<script src="https://1rmcalculate.com/widget.js"></script>
 ```
 
 ### Widget Options

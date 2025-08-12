@@ -27,6 +27,7 @@ const currentUrl = canonical || Astro.url.href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://1rmcalculate.com/og-default.png" />
+    <meta property="og:site_name" content="OneRepMax" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -54,7 +55,7 @@ const currentUrl = canonical || Astro.url.href;
       "@type": "WebApplication",
       "name": "OneRepMax Calculator",
       "description": description,
-      "url": "https://1rmcalculate.com",
+      "url": currentUrl,
       "applicationCategory": "HealthApplication",
       "operatingSystem": "Web Browser",
       "offers": {
@@ -64,7 +65,7 @@ const currentUrl = canonical || Astro.url.href;
       },
       "potentialAction": {
         "@type": "UseAction",
-        "target": "https://1rmcalculate.com"
+        "target": currentUrl
       },
       "featureList": [
         "1RM Calculator",
