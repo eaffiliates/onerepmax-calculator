@@ -8,7 +8,7 @@ A fast, SEO-optimized, static website for calculating one-rep max (1RM) estimate
 - **Confidence Intervals**: Shows range across formulas instead of false precision
 - **Plate Calculator**: Helps load barbells to target weights
 - **Warm-up Ladder**: Progressive loading recommendations
-- **Embeddable Widget**: Small, self-contained calculator for other sites
+
 - **Mobile-First**: Responsive design optimized for all devices
 - **Fast & SEO-Friendly**: Static site generation with Astro
 
@@ -39,7 +39,7 @@ npm run dev
 ### Building for Production
 
 ```bash
-# Build the widget and site
+# Build the site
 npm run build
 
 # Preview the build
@@ -57,7 +57,7 @@ npm run preview
 │   ├── pages/        # Site pages
 │   ├── styles/       # Global styles
 │   ├── utils/        # Utility functions
-│   └── widget/       # Embeddable widget
+
 ├── scripts/          # Build scripts
 └── tests/            # Test files
 ```
@@ -67,22 +67,9 @@ npm run preview
 - `/` - Main calculator
 - `/formulas/` - Formula explanations
 - `/faq/` - Frequently asked questions
-- `/embed/` - Widget embedding instructions
 
-## Embedding the Calculator
 
-Add this to your HTML:
 
-```html
-<div data-1rm-widget data-unit="kg" data-theme="light"></div>
-<script src="https://1rmcalculate.com/widget.js"></script>
-```
-
-### Widget Options
-
-- `data-unit`: "kg" or "lb" (default: "kg")
-- `data-theme`: "light" or "dark" (default: "light")  
-- `data-branding`: "true" or "false" (default: "true")
 
 ## Testing
 
@@ -94,7 +81,7 @@ npm test
 ## Performance
 
 - Lighthouse scores: 95+ across all metrics
-- Widget size: ~8KB minified
+
 - Zero external dependencies in production
 - Static site generation for optimal loading
 

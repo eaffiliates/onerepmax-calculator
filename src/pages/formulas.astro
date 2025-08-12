@@ -7,6 +7,31 @@ import Layout from '../layouts/Layout.astro';
   description="Learn about the four proven formulas for calculating one-rep max: Epley, Brzycki, Lombardi, and O'Conner. Understand their accuracy, validity ranges, and when to use each method."
   canonical="https://1rmcalculate.com/formulas/"
 >
+  <!-- JSON-LD for Article -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "1RM Formula Explanations",
+    "description": "Learn about the four proven formulas for calculating one-rep max: Epley, Brzycki, Lombardi, and O'Conner. Understand their accuracy, validity ranges, and when to use each method.",
+    "url": "https://1rmcalculate.com/formulas/",
+    "image": "https://1rmcalculate.com/og-default.png",
+    "author": {
+      "@type": "Organization",
+      "name": "OneRepMax"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OneRepMax",
+      "url": "https://1rmcalculate.com/"
+    },
+    "mainEntity": {
+      "@type": "WebPage",
+      "name": "1RM Formula Explanations",
+      "description": "Comprehensive guide to the four most accurate 1RM calculation formulas used by strength coaches and powerlifters worldwide."
+    },
+    "articleSection": "Strength Training",
+    "keywords": "1RM formulas, Epley formula, Brzycki formula, Lombardi formula, O'Conner formula, strength calculation, powerlifting"
+  })} />
   <div class="max-w-6xl mx-auto p-6">
     <!-- Breadcrumb -->
     <nav class="mb-8" aria-label="Breadcrumb">

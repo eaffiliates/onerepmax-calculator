@@ -7,6 +7,50 @@ import Layout from '../layouts/Layout.astro';
   description="Learn how to calculate your one-rep max (1RM) safely without testing it. Step-by-step guide with proven formulas, safety tips, and common mistakes to avoid. Perfect for beginners and experienced lifters."
   canonical="https://1rmcalculate.com/how-to-calculate-1rm/"
 >
+  <!-- JSON-LD for How-To Guide -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Your 1RM Without Testing It",
+    "description": "Learn the safe and accurate way to estimate your one-rep max using proven scientific formulas. No need to risk injury testing your true maximum.",
+    "url": "https://1rmcalculate.com/how-to-calculate-1rm/",
+    "image": "https://1rmcalculate.com/og-default.png",
+    "author": {
+      "@type": "Organization",
+      "name": "OneRepMax"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OneRepMax",
+      "url": "https://1rmcalculate.com/"
+    },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Choose Your Test Weight",
+        "text": "Select a weight you can lift for 3-8 reps with good form. This should be challenging but not your absolute maximum.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Perform Your Test Set",
+        "text": "Complete as many reps as possible with perfect form. Stop when form begins to break down.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Use Multiple Formulas",
+        "text": "Our calculator uses four proven formulas to give you a range and average estimate.",
+        "position": 3
+      }
+    ],
+    "totalTime": "PT10M",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "USD",
+      "value": "0"
+    }
+  })} />
   <div class="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100">
     <!-- Subtle background pattern -->
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f8fafc" fill-opacity="0.4"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
@@ -24,7 +68,7 @@ import Layout from '../layouts/Layout.astro';
           
           <!-- Website Name -->
           <div>
-            <h1 class="text-4xl font-bold text-gray-800 tracking-tight">OneRepMax</h1>
+            <h2 class="text-4xl font-bold text-gray-800 tracking-tight">OneRepMax</h2>
             <p class="text-gray-600 text-lg font-medium">Calculate Your Strength</p>
           </div>
         </a>
@@ -45,7 +89,7 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Page Title -->
       <div class="text-center mb-12 px-6">
-        <h2 class="text-4xl font-bold text-gray-800 mb-4">How to Calculate Your 1RM Without Testing It</h2>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">How to Calculate Your 1RM Without Testing It</h1>
         <p class="text-gray-600 text-lg max-w-3xl mx-auto">
           Learn the safe and accurate way to estimate your one-rep max using proven scientific formulas. No need to risk injury testing your true maximum.
         </p>
