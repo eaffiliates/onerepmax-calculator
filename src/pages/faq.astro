@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "How accurate are 1RM calculators?",
+    answer: "1RM calculators are most accurate for rep ranges of 1-10, with accuracy decreasing beyond 12 reps. Individual factors like training background, muscle fiber type, and technique can affect results. Our calculator shows a range across multiple formulas to give you a realistic estimate rather than a single potentially misleading number."
+  },
+  {
+    question: "What's the difference between kg and lb calculations?",
+    answer: "The formulas work identically in both units - the mathematics are the same. We simply convert between kilograms and pounds (1 kg = 2.20462 lbs) and round to appropriate increments (0.5 kg or 1 lb) for practical loading."
+  },
+  {
+    question: "Why do the different formulas give different results?",
+    answer: "Each formula was developed from different research studies with varying populations and testing conditions. Epley works best for moderate reps, Brzycki for lower reps, O'Conner for higher reps, and Lombardi tends to be most conservative. The range between them represents the uncertainty inherent in estimation."
+  },
+  {
+    question: "Can I use this for any exercise?",
+    answer: "These formulas work best for compound movements like squat, bench press, deadlift, and overhead press. They may be less accurate for isolation exercises, machine exercises, or movements where technique changes significantly with fatigue."
+  },
+  {
+    question: "What's the plate math feature for?",
+    answer: "The plate calculator helps you load a barbell to reach your target 1RM using standard Olympic plates. It assumes a 20kg (45lb) barbell and calculates the most efficient combination of plates. This is useful for planning your next max attempt."
+  },
+  {
+    question: "How should I use the warm-up ladder?",
+    answer: "The warm-up ladder shows progressive loading from 40% to 95% of your estimated 1RM. Start with the lighter weights for higher reps (8-10), then decrease reps as weight increases (3-5 for opener, 1-2 for near max). Always warm up properly and consider having a spotter."
+  },
+  {
+    question: "Is this calculator a substitute for a coach or medical advice?",
+    answer: "Absolutely not. This calculator is for educational and planning purposes only. Always consult qualified professionals for training advice, especially if you're new to lifting or have any health concerns. A knowledgeable coach can provide personalized guidance that no calculator can replace."
+  },
+  {
+    question: "Why is there a 12-rep limit?",
+    answer: "Research shows that 1RM formulas become significantly less accurate beyond 12 reps. At higher rep ranges, factors like muscular endurance, cardiovascular fitness, and pain tolerance play larger roles than maximum strength, making strength-based estimates unreliable."
+  }
+];
+---
+
+<Layout 
+  title="1RM Calculator FAQ" 
+  description="Frequently asked questions about one-rep max calculations, formula accuracy, rep limits, unit conversions, and safety considerations for strength training."
+>
+  <!-- JSON-LD for FAQ Page -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+
+  <div class="max-w-4xl mx-auto p-4">
+    <!-- Breadcrumb -->
+    <nav class="mb-6" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2 text-sm text-gray-600">
+        <li><a href="/" class="text-blue-600 hover:text-blue-800">1RM Calculator</a></li>
+        <li class="before:content-['/'] before:mr-2">FAQ</li>
+      </ol>
+    </nav>
+
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
+      <p class="text-lg text-gray-600 mb-8">
+        Common questions about 1RM calculations, accuracy, and safe lifting practices.
+      </p>
+
+      <div class="space-y-6">
+        {faqs.map((faq, index) => (
+          <div class="border-b border-gray-200 pb-6 last:border-b-0" key={index}>
+            <h2 class="text-xl font-semibold text-gray-900 mb-3">{faq.question}</h2>
+            <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Safety Warning -->
+      <div class="mt-8 bg-red-50 border border-red-200 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-red-800 mb-3">⚠️ Important Safety Notice</h2>
+        <div class="text-red-700 space-y-2">
+          <p>
+            <strong>These calculators provide estimates only.</strong> Always prioritize safety:
+          </p>
+          <ul class="list-disc list-inside space-y-1 ml-4">
+            <li>Warm up thoroughly before attempting heavy weights</li>
+            <li>Use proper form and technique</li>
+            <li>Have a qualified spotter for maximum attempts</li>
+            <li>Know your limits and listen to your body</li>
+            <li>Consider working with a qualified strength coach</li>
+            <li>Never attempt a true 1RM without proper preparation</li>
+          </ul>
+          <p class="font-medium">
+            This tool is for educational purposes and is not a substitute for professional coaching or medical advice.
+          </p>
+        </div>
+      </div>
+
+      <!-- Additional Resources -->
+      <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-blue-800 mb-3">Learn More</h2>
+        <div class="text-blue-700">
+          <p class="mb-3">Want to dive deeper into 1RM calculations?</p>
+          <ul class="space-y-2">
+            <li>
+              <a href="/formulas/" class="text-blue-600 hover:text-blue-800 font-medium">
+                → Read detailed formula explanations
+              </a>
+            </li>
+            <li>
+              <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">
+                → Try the calculator now
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="mt-8 flex justify-between">
+        <a href="/formulas/" class="text-blue-600 hover:text-blue-800 font-medium">← Formula Explanations</a>
+        <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">Try Calculator →</a>
+      </div>
+    </div>
+  </div>
+</Layout>

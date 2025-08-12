@@ -1,0 +1,107 @@
+---
+// Warmup ladder component for progressive loading
+---
+
+<div class="bg-white rounded-2xl p-6 shadow-sm">
+  <h3 class="text-xl font-semibold text-gray-800 mb-6">Warm-up for 1RM Test</h3>
+  
+  <div class="space-y-6">
+    <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="font-medium text-gray-900">Light warm-up</div>
+          <div class="text-sm text-gray-600">Get blood flowing, practice form</div>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500">40%</div>
+          <div id="warmup-40" class="text-lg font-bold text-gray-800">--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="font-medium text-gray-900">Moderate warm-up</div>
+          <div class="text-sm text-gray-600">Build confidence, check form</div>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500">60%</div>
+          <div id="warmup-60" class="text-lg font-bold text-gray-800">--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="font-medium text-gray-900">Heavy warm-up</div>
+          <div class="text-sm text-gray-600">Test strength, prepare for max</div>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500">75%</div>
+          <div id="warmup-75" class="text-lg font-bold text-gray-800">--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="font-medium text-gray-900">Opener</div>
+          <div class="text-sm text-gray-600">Confidence builder, near max</div>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500">85%</div>
+          <div id="warmup-85" class="text-lg font-bold text-gray-800">--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg p-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="font-medium text-gray-900">Final prep</div>
+          <div class="text-sm text-gray-600">Almost max, last warm-up</div>
+        </div>
+        <div class="text-right">
+          <div class="text-sm text-gray-500">95%</div>
+          <div id="warmup-95" class="text-lg font-bold text-gray-800">--</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+    <div class="text-sm text-gray-700">
+      <strong>Note:</strong> This warm-up prepares you to test your 1RM. Take adequate rest between sets.
+    </div>
+  </div>
+</div>
+
+<script>
+  import { generateWarmupLadder } from '../utils/plateMath.js';
+  import { formatOneRM } from '../utils/formulas.js';
+  
+  function updateWarmupLadder(oneRM, unit) {
+    const warmupSets = document.getElementById('warmup-sets');
+    if (!warmupSets) return;
+    
+    const ladder = generateWarmupLadder(oneRM);
+    const percentages = [40, 60, 75, 85, 95];
+    const setNames = ['Light warm-up', 'Moderate warm-up', 'Heavy warm-up', 'Opener', 'Near max'];
+    
+    warmupSets.innerHTML = ladder.map((weight, index) => `
+      <div class="flex flex-col items-center py-4 px-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-200">
+        <span class="font-semibold text-gray-900 mb-2 text-center">${setNames[index]}</span>
+        <span class="text-sm text-gray-600 mb-2">${percentages[index]}%</span>
+        <span class="text-xl font-bold text-blue-600">${formatOneRM(weight, unit === 'kg')}</span>
+      </div>
+    `).join('');
+  }
+  
+  // Listen for updates from the main calculator
+  window.addEventListener('updateWarmupLadder', (e) => {
+    updateWarmupLadder(e.detail.oneRM, e.detail.unit);
+  });
+</script>

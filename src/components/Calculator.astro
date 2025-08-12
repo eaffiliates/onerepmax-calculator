@@ -1,0 +1,505 @@
+---
+import WarmupLadder from './WarmupLadder.astro';
+---
+
+<!-- Background with interesting patterns -->
+<div class="min-h-screen relative overflow-hidden">
+  <!-- Dynamic Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+    <!-- Animated background elements -->
+    <div class="absolute top-0 left-0 w-full h-full">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+      <div class="absolute top-40 right-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute bottom-20 left-20 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 4s;"></div>
+    </div>
+    
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+  </div>
+
+  <!-- Header with Logo and Name -->
+  <header class="relative z-20 pt-8 pb-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center space-x-4">
+        <!-- Logo -->
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        
+        <!-- Website Name -->
+        <div>
+          <h1 class="text-4xl font-bold text-white tracking-tight">OneRepMax</h1>
+          <p class="text-blue-200 text-lg font-medium">Calculate Your Strength</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="relative z-10">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h2 class="text-5xl font-bold text-white mb-6 leading-tight">
+        <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          One-Rep Max Calculator
+        </span>
+      </h2>
+    </div>
+  
+    <!-- Calculator Card -->
+    <div class="max-w-7xl mx-auto px-6 mb-16">
+      <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
+        <!-- Calculator Form -->
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <!-- Input Section -->
+          <div class="space-y-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="weight" class="block text-sm font-medium text-gray-700 mb-2">Weight</label>
+                <input
+                  type="number"
+                  id="weight"
+                  step="1"
+                  min="0"
+                  placeholder="0"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                />
+                <p id="weight-help" class="text-sm text-gray-500 mt-1">Weight you lifted (in lb)</p>
+              </div>
+              
+              <div>
+                <label for="reps" class="block text-sm font-medium text-gray-700 mb-2">Reps</label>
+                <input
+                  type="number"
+                  id="reps"
+                  min="1"
+                  max="12"
+                  placeholder="0"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                />
+                <p class="text-sm text-gray-500 mt-1">Repetitions performed</p>
+              </div>
+            </div>
+            
+            <!-- Unit Toggle -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Units</label>
+              <div class="flex bg-gray-100 rounded-xl p-1">
+                <button
+                  id="lb-btn"
+                  class="flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200"
+                >
+                  Pounds (lb)
+                </button>
+                <button
+                  id="kg-btn"
+                  class="flex-1 py-2 px-4 rounded-lg font-medium transition-all duration-200"
+                >
+                  Kilograms (kg)
+                </button>
+              </div>
+            </div>
+            
+            <!-- Calculate Button -->
+            <button
+              id="calculate-btn"
+              class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            >
+              Calculate 1RM
+            </button>
+            
+            <!-- Validation Error -->
+            <div id="validation-error" class="hidden text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3"></div>
+          </div>
+      
+          <!-- Results Section -->
+          <div id="results-section" class="hidden space-y-6">
+            <!-- Main Result -->
+            <div class="text-center">
+              <h3 class="text-lg font-medium text-gray-600 mb-2">Your Predicted 1RM</h3>
+              <div id="median-result" class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">--</div>
+            </div>
+            
+            <!-- Range Display -->
+            <div class="bg-gray-50 rounded-2xl p-6">
+              <h4 class="text-lg font-semibold text-gray-800 mb-4">Confidence Range</h4>
+              
+              <!-- Simple Range Display -->
+              <div class="flex items-center justify-between mb-6">
+                <div class="text-center">
+                  <div class="text-sm text-gray-500 mb-1">Low</div>
+                  <div id="min-result" class="text-2xl font-bold text-blue-600">--</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-sm text-gray-500 mb-1">High</div>
+                  <div id="max-result" class="text-2xl font-bold text-blue-600">--</div>
+                </div>
+              </div>
+              
+              <!-- Clean Range Band -->
+              <div class="relative">
+                <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>Low</span>
+                  <span>High</span>
+                </div>
+              </div>
+            </div>
+            
+            <p class="text-gray-600 text-sm text-center">
+              Based on 4 proven formulas: Epley, Brzycki, Lombardi, and O'Conner
+            </p>
+            
+            <!-- Share Button -->
+            <div class="text-center">
+              <button
+                id="share-btn"
+                class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
+              >
+                📋 Copy Link
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Empty State -->
+    <div id="empty-state" class="text-center py-12">
+      <div class="max-w-md mx-auto">
+        <div class="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">What is 1RM?</h2>
+        <p class="text-gray-600 leading-relaxed">
+          Your one-rep max (1RM) is the maximum weight you can lift for a single repetition. 
+          This calculator estimates it based on lighter weights and higher reps using proven scientific formulas.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Additional Tools -->
+  <div id="additional-tools" class="hidden max-w-7xl mx-auto px-6 pb-16 relative z-10">
+    <div class="mt-16">
+      <WarmupLadder />
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calculateOneRM, formatOneRM } from '../utils/formulas.js';
+  import { convertWeight } from '../utils/units.js';
+  import { generatePermalink, parsePermalink } from '../utils/permalink.js';
+  
+  let currentUnit = 'lb';
+  let currentResults: any = null;
+  
+  // DOM elements
+  const weightInput = document.getElementById('weight') as HTMLInputElement;
+  const repsInput = document.getElementById('reps') as HTMLInputElement;
+  const calculateBtn = document.getElementById('calculate-btn') as HTMLButtonElement;
+  const kgBtn = document.getElementById('kg-btn') as HTMLButtonElement;
+  const lbBtn = document.getElementById('lb-btn') as HTMLButtonElement;
+  const resultsSection = document.getElementById('results-section') as HTMLElement;
+  const emptyState = document.getElementById('empty-state') as HTMLElement;
+  const validationError = document.getElementById('validation-error') as HTMLElement;
+  const medianResult = document.getElementById('median-result') as HTMLElement;
+  const shareBtn = document.getElementById('share-btn') as HTMLButtonElement;
+  const additionalTools = document.getElementById('additional-tools') as HTMLElement;
+  
+  // Initialize from URL params
+  function initializeFromURL() {
+    const state = parsePermalink();
+    if (state.weight) weightInput.value = state.weight.toString();
+    if (state.reps) repsInput.value = state.reps.toString();
+    if (state.units) {
+      currentUnit = state.units;
+      updateUnitButtons();
+    }
+    
+    if (state.weight && state.reps) {
+      validateAndCalculate();
+    }
+  }
+  
+  // Unit toggle
+  function updateUnitButtons() {
+    if (currentUnit === 'kg') {
+      kgBtn.classList.add('bg-white', 'text-gray-900', 'shadow-md');
+      kgBtn.classList.remove('text-gray-600');
+      lbBtn.classList.add('text-gray-600');
+      lbBtn.classList.remove('bg-white', 'text-gray-900', 'shadow-md');
+    } else {
+      lbBtn.classList.add('bg-white', 'text-gray-900', 'shadow-md');
+      lbBtn.classList.remove('text-gray-600');
+      kgBtn.classList.add('text-gray-600');
+      kgBtn.classList.remove('bg-white', 'text-gray-900', 'shadow-md');
+    }
+  }
+  
+  function switchUnits(newUnit) {
+    if (currentUnit === newUnit) return;
+    
+    const currentWeight = parseFloat(weightInput.value);
+    if (!isNaN(currentWeight)) {
+      const convertedWeight = convertWeight(currentWeight, currentUnit, newUnit);
+      weightInput.value = convertedWeight.toFixed(newUnit === 'kg' ? 1 : 0);
+    }
+    
+    // Update input step based on unit
+    weightInput.step = newUnit === 'kg' ? '0.5' : '1';
+    
+    // Update help text
+    const weightHelp = document.getElementById('weight-help');
+    if (weightHelp) {
+      weightHelp.textContent = `Weight you lifted (in ${newUnit})`;
+    }
+    
+    currentUnit = newUnit;
+    updateUnitButtons();
+    
+    if (currentResults) {
+      displayResults(currentResults);
+    }
+  }
+  
+  // Validation
+  function validateInputs(): string | null {
+    const weight = parseFloat(weightInput.value);
+    const reps = parseInt(repsInput.value);
+    
+    if (isNaN(weight) || weight <= 0) {
+      return 'Please enter a valid weight greater than 0';
+    }
+    
+    if (isNaN(reps) || reps < 1 || reps > 12) {
+      return 'Please enter reps between 1 and 12 for accurate estimates';
+    }
+    
+    return null;
+  }
+  
+  function validateAndCalculate() {
+    const error = validateInputs();
+    
+    if (error) {
+      validationError.textContent = error;
+      validationError.classList.remove('hidden');
+      calculateBtn.disabled = true;
+      hideResults();
+      return;
+    }
+    
+    validationError.classList.add('hidden');
+    calculateBtn.disabled = false;
+    calculate();
+  }
+  
+  function hideResults() {
+    resultsSection.classList.add('hidden');
+    emptyState.classList.remove('hidden');
+    additionalTools.classList.add('hidden');
+  }
+  
+  function calculate() {
+    const weight = parseFloat(weightInput.value);
+    const reps = parseInt(repsInput.value);
+    
+    console.log('Calculating with:', { weight, reps, currentUnit });
+    console.log('calculateOneRM function:', typeof calculateOneRM);
+    
+    try {
+      // Temporary inline function to test
+      if (typeof calculateOneRM !== 'function') {
+        console.log('Using inline function');
+        // Inline the calculation logic
+        if (weight <= 0 || reps < 1 || reps > 12) {
+          throw new Error('Invalid input: weight must be positive and reps between 1-12');
+        }
+        
+        // Epley: 1RM = w × (1 + r/30)
+        const epley = weight * (1 + reps / 30);
+        
+        // Brzycki: 1RM = w × 36 / (37 − r)
+        const brzycki = reps >= 37 ? weight * 2 : weight * 36 / (37 - reps);
+        
+        // Lombardi: 1RM = w × r^0.10
+        const lombardi = weight * Math.pow(reps, 0.10);
+        
+        // O'Conner: 1RM = w × (1 + 0.025 × r)
+        const oconnor = weight * (1 + 0.025 * reps);
+        
+        const results = [epley, brzycki, lombardi, oconnor];
+        const average = results.reduce((sum, val) => sum + val, 0) / results.length; // True average
+        const min = Math.min(...results);
+        const max = Math.max(...results);
+        
+        currentResults = {
+          epley,
+          brzycki,
+          lombardi,
+          oconnor,
+          median: average, // Keep median property name for compatibility
+          average: average, // Add explicit average property
+          min,
+          max
+        };
+      } else {
+        console.log('Using imported function');
+        currentResults = calculateOneRM(weight, reps);
+        // Override the median with the true average
+        const results = [currentResults.epley, currentResults.brzycki, currentResults.lombardi, currentResults.oconnor];
+        currentResults.median = results.reduce((sum, val) => sum + val, 0) / results.length;
+        currentResults.average = currentResults.median;
+      }
+      
+      console.log('Calculation results:', currentResults);
+      
+      displayResults(currentResults);
+      updateURL();
+    } catch (error) {
+      console.error('Calculation error:', error);
+      validationError.textContent = `Error calculating 1RM: ${error.message}. Please check your inputs.`;
+      validationError.classList.remove('hidden');
+    }
+  }
+  
+  function displayResults(results: any) {
+    const isKg = currentUnit === 'kg';
+    
+    // Show results section first so ResultCard components are rendered
+    emptyState.classList.add('hidden');
+    resultsSection.classList.remove('hidden');
+    additionalTools.classList.remove('hidden');
+    
+    // Temporary inline formatOneRM function
+    const formatOneRMInline = (value: number, isKg: boolean): string => {
+      const increment = isKg ? 0.5 : 1;
+      const rounded = Math.round(value / increment) * increment;
+      return `${rounded.toFixed(isKg ? 1 : 0)}${isKg ? 'kg' : 'lb'}`;
+    };
+    
+    // Use inline function if imported one is not available
+    const formatFunc = typeof formatOneRM === 'function' ? formatOneRM : formatOneRMInline;
+    
+    // Update median result
+    if (medianResult) {
+      medianResult.textContent = formatFunc(results.median, isKg);
+    }
+ 
+     // Update min result
+     if (document.getElementById('min-result')) {
+       document.getElementById('min-result')!.textContent = formatFunc(results.min, isKg);
+     }
+ 
+     // Update max result
+     if (document.getElementById('max-result')) {
+       document.getElementById('max-result')!.textContent = formatFunc(results.max, isKg);
+     }
+    
+    // Update confidence bar
+    updateConfidenceBar(results);
+    
+    // Update additional tools
+    updateAdditionalTools(results.median);
+    
+    // Announce to screen readers
+    const announcement = `1RM calculated: ${formatFunc(results.median, isKg)} with range from ${formatFunc(results.min, isKg)} to ${formatFunc(results.max, isKg)}`;
+    announceToScreenReader(announcement);
+  }
+  
+  function updateConfidenceBar(results: any) {
+    // No longer needed since we simplified the UI to just show the range band
+    // The confidence bar is now static and just shows the gradient range
+    console.log('Confidence range updated:', { min: results.min, max: results.max });
+  }
+  
+  function updateAdditionalTools(oneRM: number) {
+    try {
+      // Update warmup ladder
+      updateWarmupLadder(oneRM);
+    } catch (error) {
+      console.warn('Error updating additional tools:', error);
+    }
+  }
+
+  function updateWarmupLadder(results: any) {
+    const isKg = currentUnit === 'kg';
+    
+    // Use the same formatting logic as the main results
+    const formatFunc = (value: number, isKg: boolean): string => {
+      const increment = isKg ? 0.5 : 1;
+      const rounded = Math.round(value / increment) * increment;
+      return `${rounded.toFixed(isKg ? 1 : 0)} ${isKg ? 'kg' : 'lb'}`;
+    };
+    
+    // Update each warmup percentage
+    const percentages = [40, 60, 75, 85, 95];
+    percentages.forEach(percent => {
+      const element = document.getElementById(`warmup-${percent}`);
+      if (element) {
+        const weight = Math.round((results * percent) / 100);
+        element.textContent = formatFunc(weight, isKg);
+      }
+    });
+  }
+  
+  function updateURL() {
+    if (typeof window === 'undefined') return;
+    
+    const weight = parseFloat(weightInput.value);
+    const reps = parseInt(repsInput.value);
+    
+    if (!isNaN(weight) && !isNaN(reps)) {
+      const state = { weight, reps, units: currentUnit };
+      const url = generatePermalink(state);
+      window.history.replaceState({}, '', url);
+    }
+  }
+  
+  function announceToScreenReader(message: string) {
+    const announcer = document.createElement('div');
+    announcer.setAttribute('aria-live', 'polite');
+    announcer.setAttribute('aria-atomic', 'true');
+    announcer.style.position = 'absolute';
+    announcer.style.left = '-10000px';
+    announcer.textContent = message;
+    document.body.appendChild(announcer);
+    setTimeout(() => document.body.removeChild(announcer), 1000);
+  }
+  
+  // Event listeners
+  kgBtn.addEventListener('click', () => switchUnits('kg'));
+  lbBtn.addEventListener('click', () => switchUnits('lb'));
+  
+  weightInput.addEventListener('input', validateAndCalculate);
+  repsInput.addEventListener('input', validateAndCalculate);
+  calculateBtn.addEventListener('click', calculate);
+  
+  shareBtn.addEventListener('click', async () => {
+    const url = generatePermalink({
+      weight: parseFloat(weightInput.value),
+      reps: parseInt(repsInput.value),
+      units: currentUnit
+    });
+    
+    try {
+      await navigator.clipboard.writeText(url);
+      shareBtn.textContent = '✓ Copied!';
+      setTimeout(() => shareBtn.textContent = '📋 Copy Link', 2000);
+    } catch (err) {
+      console.error('Failed to copy link:', err);
+    }
+  });
+  
+  // Initialize
+  initializeFromURL();
+  updateUnitButtons();
+</script>

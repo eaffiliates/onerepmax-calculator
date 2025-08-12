@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const { title, description, ogImage = '/og-default.png', canonical } = Astro.props;
+const fullTitle = title.includes('1RM') ? title : `${title} | 1RM Calculator`;
+const currentUrl = canonical || Astro.url.href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="1RM calculator, one rep max, strength training, weightlifting, fitness calculator, max weight calculator" />
+    <meta name="author" content="1RM Calculator" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={currentUrl} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:site_name" content="1RM Calculator" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- JSON-LD for homepage -->
+    {Astro.url.pathname === '/' && (
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "1RM Calculator",
+          "description": "Fast, accurate one-rep max calculator using multiple proven formulas. Estimate your 1RM with confidence intervals.",
+          "url": Astro.site,
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": "Any",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "1RM Calculator"
+          },
+          "potentialAction": {
+            "@type": "UseAction",
+            "target": Astro.site
+          },
+          "featureList": [
+            "Multiple formula support (Epley, Brzycki, Lombardi, O'Conner)",
+            "Confidence intervals",
+            "Plate calculator",
+            "Warm-up ladder",
+            "Mobile responsive"
+          ]
+        })}
+      </script>
+    )}
+  </head>
+  <body class="min-h-screen font-['Inter']">
+    <main class="relative">
+      <slot />
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-16">
+      <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-bold text-gray-900 mb-4 text-lg">1RM Calculator</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Fast, accurate one-rep max estimation using proven scientific formulas. 
+              Built for athletes, trainers, and fitness enthusiasts.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-4 text-lg">Learn More</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Home</a></li>
+              <li><a href="/formulas/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Formulas</a></li>
+              <li><a href="/faq/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-4 text-lg">Disclaimer</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              For educational purposes only. Always warm up properly, use proper form, 
+              and consider professional guidance for your fitness journey.
+            </p>
+          </div>
+        </div>
+        <div class="border-t border-gray-200 mt-10 pt-8 text-center">
+          <p class="text-gray-500">&copy; 2024 1RM Calculator. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

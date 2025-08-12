@@ -1,0 +1,111 @@
+---
+// Plate calculator component for target 1RM loading
+---
+
+<div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+  <h3 class="text-2xl font-bold text-gray-900 mb-6">Plate Loading</h3>
+  <div id="plate-calculation" class="space-y-6">
+    <p class="text-gray-600 text-lg">Select a target weight to see plate loading:</p>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="target-buttons">
+      <!-- Populated by JavaScript -->
+    </div>
+    <div id="plate-breakdown" class="hidden">
+      <div class="border-t border-gray-200 pt-6">
+        <h4 class="font-bold text-gray-900 mb-4 text-lg">Loading for <span id="target-weight" class="text-blue-600">--</span>:</h4>
+        <div class="bg-gray-50 rounded-xl p-4 space-y-2">
+          <div class="flex justify-between">
+            <span class="text-gray-600">Bar:</span>
+            <span id="bar-weight" class="font-semibold">--</span>
+          </div>
+          <div id="plates-list" class="space-y-1">
+            <!-- Populated by JavaScript -->
+          </div>
+          <div class="flex justify-between pt-3 border-t border-gray-200 font-bold text-lg">
+            <span>Total:</span>
+            <span id="total-weight" class="text-blue-600">--</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { calculatePlates } from '../utils/plateMath.js';
+  import { formatOneRM, roundToNearestIncrement } from '../utils/formulas.js';
+  
+  let currentOneRM = 0;
+  let currentUnit = 'kg';
+  
+  function updatePlateCalculator(oneRM, unit) {
+    currentOneRM = oneRM;
+    currentUnit = unit;
+    
+    const targetButtons = document.getElementById('target-buttons');
+    const plateBreakdown = document.getElementById('plate-breakdown');
+    
+    if (!targetButtons || !plateBreakdown) return;
+    
+    // Generate target weights around the 1RM
+    const targets = [
+      Math.round(oneRM * 0.9),
+      Math.round(oneRM * 0.95),
+      Math.round(oneRM),
+      Math.round(oneRM * 1.05),
+      Math.round(oneRM * 1.1)
+    ].map(weight => roundToNearestIncrement(weight, unit === 'kg'));
+    
+    targetButtons.innerHTML = targets.map(weight => `
+      <button 
+        class="px-4 py-3 bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 rounded-xl hover:from-blue-100 hover:to-purple-100 border-2 border-blue-200 hover:border-blue-300 target-btn font-semibold transition-all duration-200 transform hover:scale-105"
+        data-weight="${weight}"
+      >
+        ${formatOneRM(weight, unit === 'kg')}
+      </button>
+    `).join('');
+    
+    // Add event listeners to target buttons
+    targetButtons.querySelectorAll('.target-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.target as HTMLButtonElement;
+        const weight = parseFloat(target.dataset.weight || '0');
+        showPlateBreakdown(weight);
+      });
+    });
+    
+    plateBreakdown.classList.add('hidden');
+  }
+  
+  function showPlateBreakdown(targetWeight: number) {
+    const calculation = calculatePlates(targetWeight, currentUnit === 'kg');
+    
+    const targetWeightEl = document.getElementById('target-weight');
+    const barWeightEl = document.getElementById('bar-weight');
+    const platesListEl = document.getElementById('plates-list');
+    const totalWeightEl = document.getElementById('total-weight');
+    const plateBreakdown = document.getElementById('plate-breakdown');
+    
+    if (!targetWeightEl || !barWeightEl || !platesListEl || !totalWeightEl || !plateBreakdown) return;
+    
+    const unit = currentUnit === 'kg' ? 'kg' : 'lb';
+    
+    targetWeightEl.textContent = formatOneRM(targetWeight, currentUnit === 'kg');
+    barWeightEl.textContent = `${calculation.barWeight}${unit}`;
+    totalWeightEl.textContent = formatOneRM(calculation.totalWeight, currentUnit === 'kg');
+    
+    if (calculation.plates.length === 0) {
+      platesListEl.innerHTML = '<div>Just the bar!</div>';
+    } else {
+      platesListEl.innerHTML = calculation.plates.map(plate => `
+        <div>${plate.count}x ${plate.weight}${unit} plates</div>
+      `).join('');
+    }
+    
+    plateBreakdown.classList.remove('hidden');
+  }
+  
+  // Listen for updates from the main calculator
+  window.addEventListener('updatePlateCalculator', (e) => {
+    updatePlateCalculator(e.detail.oneRM, e.detail.unit);
+  });
+</script>
