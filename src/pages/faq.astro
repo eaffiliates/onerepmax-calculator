@@ -3,36 +3,64 @@ import Layout from '../layouts/Layout.astro';
 
 const faqs = [
   {
+    question: "What is a 1RM and why is it important?",
+    answer: "A 1RM (one-rep max) is the maximum weight you can lift for a single repetition with proper form. It's important because it helps you determine training percentages, track progress, set realistic goals, and create effective workout programs. However, you don't need to test your true 1RM - our calculator estimates it safely using submaximal weights."
+  },
+  {
     question: "How accurate are 1RM calculators?",
-    answer: "1RM calculators are most accurate for rep ranges of 1-10, with accuracy decreasing beyond 12 reps. Individual factors like training background, muscle fiber type, and technique can affect results. Our calculator shows a range across multiple formulas to give you a realistic estimate rather than a single potentially misleading number."
+    answer: "1RM calculators are quite accurate when used properly. For 3-5 reps, accuracy is typically within 5-10%. For 6-8 reps, accuracy is within 10-15%. Beyond 12 reps, accuracy decreases significantly. Our calculator uses four proven formulas (Epley, Brzycki, Lombardi, and O'Conner) to give you a range and average estimate for maximum accuracy."
   },
   {
-    question: "What's the difference between kg and lb calculations?",
-    answer: "The formulas work identically in both units - the mathematics are the same. We simply convert between kilograms and pounds (1 kg = 2.20462 lbs) and round to appropriate increments (0.5 kg or 1 lb) for practical loading."
+    question: "What's the safest way to test my 1RM?",
+    answer: "The safest approach is to NOT test your true 1RM. Instead, use our calculator with weights you can lift for 3-8 reps with perfect form. This gives you accurate estimates while eliminating injury risk. If you must test, use a spotter, warm up thoroughly, and stop if form breaks down."
   },
   {
-    question: "Why do the different formulas give different results?",
-    answer: "Each formula was developed from different research studies with varying populations and testing conditions. Epley works best for moderate reps, Brzycki for lower reps, O'Conner for higher reps, and Lombardi tends to be most conservative. The range between them represents the uncertainty inherent in estimation."
+    question: "How often should I recalculate my 1RM?",
+    answer: "Recalculate every 4-8 weeks for most lifters. Beginners making rapid progress can recalculate every 4-6 weeks. Intermediate lifters should recalculate every 6-8 weeks. Advanced lifters can recalculate every 8-12 weeks. Always recalculate if you've had a significant break from training or changed your program."
   },
   {
-    question: "Can I use this for any exercise?",
-    answer: "These formulas work best for compound movements like squat, bench press, deadlift, and overhead press. They may be less accurate for isolation exercises, machine exercises, or movements where technique changes significantly with fatigue."
+    question: "Which formula is most accurate?",
+    answer: "The Epley formula is most accurate for 3-8 reps and is widely used. The Brzycki formula excels for 1-6 reps and is preferred by powerlifters. The Lombardi formula is most conservative and good for safety. The O'Conner formula works well for higher rep ranges. Our calculator combines all four for maximum accuracy."
   },
   {
-    question: "What's the plate math feature for?",
-    answer: "The plate calculator helps you load a barbell to reach your target 1RM using standard Olympic plates. It assumes a 20kg (45lb) barbell and calculates the most efficient combination of plates. This is useful for planning your next max attempt."
+    question: "Can I use different rep ranges for different exercises?",
+    answer: "Yes! Different exercises have different optimal rep ranges for 1RM estimation. For compound lifts (squat, deadlift, bench press), 3-8 reps work best. For isolation exercises, 6-10 reps may be more accurate. Always prioritize form over weight, regardless of the exercise."
   },
   {
-    question: "How should I use the warm-up ladder?",
-    answer: "The warm-up ladder shows progressive loading from 40% to 95% of your estimated 1RM. Start with the lighter weights for higher reps (8-10), then decrease reps as weight increases (3-5 for opener, 1-2 for near max). Always warm up properly and consider having a spotter."
+    question: "What if my calculated 1RM seems too high or low?",
+    answer: "If your calculated 1RM seems unrealistic, check your form and technique. Poor form can artificially inflate or deflate your numbers. Also consider that some people are naturally stronger at certain rep ranges. Use the confidence range provided - it accounts for individual variations in strength curves."
   },
   {
-    question: "Is this calculator a substitute for a coach or medical advice?",
-    answer: "Absolutely not. This calculator is for educational and planning purposes only. Always consult qualified professionals for training advice, especially if you're new to lifting or have any health concerns. A knowledgeable coach can provide personalized guidance that no calculator can replace."
+    question: "How do I use my estimated 1RM for training?",
+    answer: "Use your estimated 1RM to calculate training percentages: 70-80% for strength work (3-5 reps), 80-85% for power work (1-3 reps), and 60-70% for volume work (8-12 reps). Start conservatively and adjust based on how the weights feel. Remember, these are estimates - let your body be your guide."
   },
   {
-    question: "Why is there a 12-rep limit?",
-    answer: "Research shows that 1RM formulas become significantly less accurate beyond 12 reps. At higher rep ranges, factors like muscular endurance, cardiovascular fitness, and pain tolerance play larger roles than maximum strength, making strength-based estimates unreliable."
+    question: "Should I test my 1RM before starting a new program?",
+    answer: "It's not necessary to test your 1RM before starting a new program. You can estimate it using our calculator with recent training weights. Focus on learning proper form and building consistency first. Once you're comfortable with the movements, you can get more accurate estimates."
+  },
+  {
+    question: "What's the difference between testing and calculating 1RM?",
+    answer: "Testing 1RM involves attempting your maximum weight for one rep, which carries injury risk and requires extensive preparation. Calculating 1RM uses proven formulas with submaximal weights to estimate your maximum safely. Testing gives you the exact number, while calculating gives you a reliable estimate with no risk."
+  },
+  {
+    question: "How do I know if I'm ready to test my true 1RM?",
+    answer: "You're ready to test your true 1RM only if you have: 1) Perfect form on the exercise, 2) At least 6 months of consistent training, 3) A qualified spotter, 4) Proper equipment and safety measures, 5) No recent injuries or pain. However, we still recommend using our calculator instead for safety."
+  },
+  {
+    question: "Can I use this calculator for bodyweight exercises?",
+    answer: "1RM calculators work best with weighted exercises where you can easily measure the load. For bodyweight exercises like push-ups or pull-ups, focus on improving your rep count instead. If you want to estimate strength, consider adding weight (like a weighted vest) to make it measurable."
+  },
+  {
+    question: "What if I'm injured or have physical limitations?",
+    answer: "If you're injured or have physical limitations, consult with a qualified healthcare provider before using any strength calculator. The calculator provides estimates only and cannot account for individual health conditions. Always prioritize safety and proper medical guidance over training goals."
+  },
+  {
+    question: "How do I warm up before testing for 1RM calculations?",
+    answer: "Warm up with 2-3 sets of progressively heavier weights, starting with 50% of your estimated 1RM and working up to your test weight. Take 2-3 minutes between warm-up sets. Your test set should feel challenging but not maximal. This ensures accurate calculations while preventing injury."
+  },
+  {
+    question: "Can I use this calculator for Olympic lifts?",
+    answer: "1RM calculators are less accurate for Olympic lifts (snatch, clean & jerk) due to their technical complexity and different strength curves. For Olympic lifts, focus on technique and use percentages of your best technical lifts. Traditional 1RM calculators work best for basic strength movements."
   }
 ];
 ---

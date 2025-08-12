@@ -140,96 +140,98 @@ import Calculator from '../components/Calculator.astro';
                   </div>
                   <div class="text-center">
                     <div class="text-sm text-gray-500 mb-1">High</div>
-                    <div id="max-result" class="text-2xl font-bold text-blue-600">--</div>
+                    <div id="max-result" class="text-2xl font-bold text-purple-600">--</div>
                   </div>
                 </div>
                 
-                <!-- Clean Range Band -->
+                <!-- Confidence Band -->
                 <div class="relative">
-                  <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
-                    <div class="h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                  </div>
-                  <div class="flex justify-between text-xs text-gray-500 mt-2">
-                    <span>Low</span>
-                    <span>High</span>
-                  </div>
+                  <div class="h-3 bg-gradient-to-r from-blue-200 via-purple-200 to-purple-300 rounded-full"></div>
                 </div>
-              </div>
-              
-              <p class="text-gray-600 text-sm text-center">
-                Based on 4 proven formulas: Epley, Brzycki, Lombardi, and O'Conner
-              </p>
-              
-              <!-- Share Button -->
-              <div class="text-center">
-                <button
-                  id="share-btn"
-                  class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
-                >
-                  📋 Copy Link
-                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Deadlift Specific Content -->
+      <!-- Deadlift Form & Safety Guide -->
       <div class="max-w-4xl mx-auto px-6 mb-16">
-        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
-          <h3 class="text-2xl font-bold text-gray-900 mb-6">Deadlift Form & Safety Tips</h3>
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Deadlift Form & Safety Guide</h3>
           
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Form Guidelines -->
             <div>
-              <h4 class="text-lg font-semibold text-gray-800 mb-3">Proper Form Checklist</h4>
-              <ul class="space-y-2 text-gray-600">
-                <li class="flex items-start">
-                  <span class="text-green-500 mr-2">✓</span>
-                  Feet shoulder-width apart, bar over mid-foot
-                </li>
-                <li class="flex items-start">
-                  <span class="text-green-500 mr-2">✓</span>
-                  Hinge at hips, keep chest up
-                </li>
-                <li class="flex items-start">
-                  <span class="text-green-500 mr-2">✓</span>
-                  Grip bar with hands just outside knees
-                </li>
-                <li class="flex items-start">
-                  <span class="text-green-500 mr-2">✓</span>
-                  Pull slack out of bar before lifting
-                </li>
-                <li class="flex items-start">
-                  <span class="text-green-500 mr-2">✓</span>
-                  Stand up straight, squeeze glutes at top
-                </li>
-              </ul>
+              <h4 class="text-xl font-semibold text-gray-900 mb-4">Proper Form Guidelines</h4>
+              
+              <div class="space-y-4">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h5 class="font-semibold text-blue-800 mb-2">Setup Position</h5>
+                  <ul class="text-blue-700 text-sm space-y-1">
+                    <li>• Stand with feet hip-width apart, bar over mid-foot</li>
+                    <li>• Hinge at hips, keep chest up and back straight</li>
+                    <li>• Grip bar just outside your legs</li>
+                    <li>• Set shoulders back and down</li>
+                  </ul>
+                </div>
+                
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <h5 class="font-semibold text-green-800 mb-2">Movement Pattern</h5>
+                  <ul class="text-green-700 text-sm space-y-1">
+                    <li>• Push through your feet, not pull with your back</li>
+                    <li>• Keep bar close to your legs throughout</li>
+                    <li>• Stand up straight, don't lean back</li>
+                    <li>• Control the descent back to the floor</li>
+                  </ul>
+                </div>
+                
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <h5 class="font-semibold text-purple-800 mb-2">Breathing & Bracing</h5>
+                  <ul class="text-purple-700 text-sm space-y-1">
+                    <li>• Take deep breath and brace core before lift</li>
+                    <li>• Hold breath during the pull</li>
+                    <li>• Exhale at the top of the movement</li>
+                    <li>• Maintain core tension throughout</li>
+                  </ul>
+                </div>
+              </div>
             </div>
             
+            <!-- Safety Tips -->
             <div>
-              <h4 class="text-lg font-semibold text-gray-800 mb-3">Safety Considerations</h4>
-              <ul class="space-y-2 text-gray-600">
-                <li class="flex items-start">
-                  <span class="text-red-500 mr-2">⚠</span>
-                  Never round your lower back
-                </li>
-                <li class="flex items-start">
-                  <span class="text-red-500 mr-2">⚠</span>
-                  Warm up thoroughly before heavy attempts
-                </li>
-                <li class="flex items-start">
-                  <span class="text-red-500 mr-2">⚠</span>
-                  Use proper footwear (flat, stable shoes)
-                </li>
-                <li class="flex items-start">
-                  <span class="text-red-500 mr-2">⚠</span>
-                  Don't jerk the bar off the ground
-                </li>
-                <li class="flex items-start">
-                  <span class="text-red-500 mr-2">⚠</span>
-                  Consider using straps for grip strength
-                </li>
-              </ul>
+              <h4 class="text-xl font-semibold text-gray-900 mb-4">Safety Considerations</h4>
+              
+              <div class="space-y-4">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <h5 class="font-semibold text-red-800 mb-2">⚠️ Critical Safety Rules</h5>
+                  <ul class="text-red-700 text-sm space-y-1">
+                    <li>• Never round your lower back</li>
+                    <li>• Use proper warm-up progression</li>
+                    <li>• Have a spotter for heavy attempts</li>
+                    <li>• Stop if form breaks down</li>
+                  </ul>
+                </div>
+                
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <h5 class="font-semibold text-yellow-800 mb-2">Common Mistakes</h5>
+                  <ul class="text-yellow-700 text-sm space-y-1">
+                    <li>• Starting with hips too low (squatting)</li>
+                    <li>• Pulling with your back instead of legs</li>
+                    <li>• Letting the bar drift away from legs</li>
+                    <li>• Not maintaining neutral spine</li>
+                  </ul>
+                </div>
+                
+                <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                  <h5 class="font-semibold text-orange-800 mb-2">Progression Tips</h5>
+                  <ul class="text-orange-700 text-sm space-y-1">
+                    <li>• Start with 3-5 reps for accuracy</li>
+                    <li>• Focus on perfect form over weight</li>
+                    <li>• Increase weight gradually (5-10%)</li>
+                    <li>• Allow adequate recovery between tests</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -237,42 +239,44 @@ import Calculator from '../components/Calculator.astro';
 
       <!-- Deadlift Strength Standards -->
       <div class="max-w-4xl mx-auto px-6 mb-16">
-        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
-          <h3 class="text-2xl font-bold text-gray-900 mb-6">Deadlift Strength Standards</h3>
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Deadlift Strength Standards</h3>
           
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
                 <tr class="border-b border-gray-200">
-                  <th class="text-left py-3 px-4 font-semibold text-gray-700">Experience Level</th>
-                  <th class="text-center py-3 px-4 font-semibold text-gray-700">Beginner</th>
-                  <th class="text-center py-3 px-4 font-semibold text-gray-700">Intermediate</th>
-                  <th class="text-center py-3 px-4 font-semibold text-gray-700">Advanced</th>
-                  <th class="text-center py-3 px-4 font-semibold text-gray-700">Elite</th>
+                  <th class="text-left py-3 px-4 font-semibold text-gray-900">Experience Level</th>
+                  <th class="text-center py-3 px-4 font-semibold text-gray-900">Beginner</th>
+                  <th class="text-center py-3 px-4 font-semibold text-gray-900">Intermediate</th>
+                  <th class="text-center py-3 px-4 font-semibold text-gray-900">Advanced</th>
+                  <th class="text-center py-3 px-4 font-semibold text-gray-900">Elite</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 font-medium text-gray-700">Bodyweight Ratio</td>
-                  <td class="text-center py-3 px-4 text-gray-600">1.0x</td>
-                  <td class="text-center py-3 px-4 text-gray-600">1.5x</td>
-                  <td class="text-center py-3 px-4 text-gray-600">2.0x</td>
-                  <td class="text-center py-3 px-4 text-gray-600">2.5x+</td>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="py-3 px-4 font-medium text-gray-900">Bodyweight Ratio</td>
+                  <td class="py-3 px-4 text-center text-gray-600">1.0x</td>
+                  <td class="py-3 px-4 text-center text-gray-600">1.5x</td>
+                  <td class="py-3 px-4 text-center text-gray-600">2.0x</td>
+                  <td class="py-3 px-4 text-center text-gray-600">2.5x+</td>
                 </tr>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 font-medium text-gray-700">Training Time</td>
-                  <td class="text-center py-3 px-4 text-gray-600">0-1 years</td>
-                  <td class="text-center py-3 px-4 text-gray-600">1-3 years</td>
-                  <td class="text-center py-3 px-4 text-gray-600">3-5 years</td>
-                  <td class="text-center py-3 px-4 text-gray-600">5+ years</td>
+                <tr class="bg-gray-50">
+                  <td class="py-3 px-4 font-medium text-gray-900">Example (150 lb person)</td>
+                  <td class="py-3 px-4 text-center text-gray-600">150 lb</td>
+                  <td class="py-3 px-4 text-center text-gray-600">225 lb</td>
+                  <td class="py-3 px-4 text-center text-gray-600">300 lb</td>
+                  <td class="py-3 px-4 text-center text-gray-600">375 lb+</td>
                 </tr>
               </tbody>
             </table>
           </div>
           
-          <p class="text-sm text-gray-500 mt-4 text-center">
-            *Standards based on average male lifters. Individual results may vary based on genetics, training consistency, and other factors.
-          </p>
+          <div class="mt-6 text-center">
+            <p class="text-gray-600 text-sm">
+              <strong>Note:</strong> These are general guidelines. Individual results may vary based on genetics, training history, and body composition.
+            </p>
+          </div>
         </div>
       </div>
 
