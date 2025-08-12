@@ -4,9 +4,11 @@ import { ViewTransitions } from 'astro:transitions';
 export interface Props {
   title: string;
   description: string;
+  canonical?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonical } = Astro.props;
+const currentUrl = canonical || Astro.url.href;
 ---
 
 <!doctype html>
@@ -21,20 +23,20 @@ const { title, description } = Astro.props;
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://1rmcalculate.com/" />
+    <meta property="og:url" content={currentUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://1rmcalculate.com/og-default.png" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://1rmcalculate.com/" />
+    <meta property="twitter:url" content={currentUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://1rmcalculate.com/og-default.png" />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://1rmcalculate.com/" />
+    <link rel="canonical" href={currentUrl} />
     
     <title>{title}</title>
     

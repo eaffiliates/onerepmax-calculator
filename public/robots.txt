@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://1rmcalculator.com/sitemap.xml
+Sitemap: https://1rmcalculate.com/sitemap.xml
