@@ -7,24 +7,16 @@ import Calculator from '../components/Calculator.astro';
   title="Deadlift 1RM Calculator - Calculate Your Deadlift Max" 
   description="Calculate your deadlift 1RM (one rep max) using proven formulas. Get accurate deadlift max estimates with confidence intervals, form tips, and strength standards. Free deadlift calculator for powerlifting and strength training."
 >
-  <div class="min-h-screen relative overflow-hidden">
-    <!-- Dynamic Background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
-      <!-- Animated background elements -->
-      <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-      <div class="absolute top-40 right-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
-      <div class="absolute -bottom-8 left-40 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
-      
-      <!-- Grid pattern overlay -->
-      <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-    </div>
+  <div class="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100">
+    <!-- Subtle background pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f8fafc" fill-opacity="0.4"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
 
     <!-- Header with Logo and Name -->
     <header class="relative z-20 pt-8 pb-12">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex items-center space-x-4">
           <!-- Logo -->
-          <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
@@ -32,8 +24,8 @@ import Calculator from '../components/Calculator.astro';
           
           <!-- Website Name -->
           <div>
-            <h1 class="text-4xl font-bold text-white tracking-tight">OneRepMax</h1>
-            <p class="text-blue-200 text-lg font-medium">Calculate Your Strength</p>
+            <h1 class="text-4xl font-bold text-gray-800 tracking-tight">OneRepMax</h1>
+            <p class="text-gray-600 text-lg font-medium">Calculate Your Strength</p>
           </div>
         </div>
       </div>
@@ -44,24 +36,24 @@ import Calculator from '../components/Calculator.astro';
       <!-- Breadcrumb Navigation -->
       <div class="max-w-7xl mx-auto px-6 mb-6">
         <nav class="mb-6" aria-label="Breadcrumb">
-          <ol class="flex items-center space-x-2 text-sm text-blue-200">
-            <li><a href="/" class="text-blue-200 hover:text-white transition-colors duration-200">1RM Calculator</a></li>
-            <li class="before:content-['/'] before:mr-2 text-white">Deadlift Calculator</li>
+          <ol class="flex items-center space-x-2 text-sm text-gray-600">
+            <li><a href="/" class="text-gray-600 hover:text-blue-600 transition-colors duration-200">1RM Calculator</a></li>
+            <li class="before:content-['/'] before:mr-2 text-gray-800">Deadlift Calculator</li>
           </ol>
         </nav>
       </div>
 
       <!-- Page Title -->
       <div class="text-center mb-8 px-6">
-        <h2 class="text-4xl font-bold text-white mb-4">Deadlift 1RM Calculator</h2>
-        <p class="text-blue-200 text-lg max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Deadlift 1RM Calculator</h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
           Calculate your deadlift one-rep max using proven scientific formulas. Get accurate estimates with confidence intervals and personalized warm-up recommendations.
         </p>
       </div>
 
       <!-- Calculator Card -->
       <div class="max-w-7xl mx-auto px-6 mb-16">
-        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8">
           <!-- Calculator Title -->
           <h3 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Deadlift Calculator</h3>
           

@@ -3,26 +3,16 @@ import WarmupLadder from './WarmupLadder.astro';
 ---
 
 <!-- Background with interesting patterns -->
-<div class="min-h-screen relative overflow-hidden">
-  <!-- Dynamic Background -->
-  <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
-    <!-- Animated background elements -->
-    <div class="absolute top-0 left-0 w-full h-full">
-      <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-      <div class="absolute top-40 right-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
-      <div class="absolute bottom-20 left-20 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 4s;"></div>
-    </div>
-    
-    <!-- Subtle grid pattern -->
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
-  </div>
+<div class="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100">
+  <!-- Subtle background pattern -->
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f8fafc" fill-opacity="0.4"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-60"></div>
 
   <!-- Header with Logo and Name -->
   <header class="relative z-20 pt-8 pb-12">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex items-center space-x-4">
         <!-- Logo -->
-        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
           <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
@@ -30,18 +20,27 @@ import WarmupLadder from './WarmupLadder.astro';
         
         <!-- Website Name -->
         <div>
-          <h1 class="text-4xl font-bold text-white tracking-tight">OneRepMax</h1>
-          <p class="text-blue-200 text-lg font-medium">Calculate Your Strength</p>
+          <h1 class="text-4xl font-bold text-gray-800 tracking-tight">OneRepMax</h1>
+          <p class="text-gray-600 text-lg font-medium">Calculate Your Strength</p>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Hero Section -->
+  <div class="text-center mb-12">
+    <h2 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+      <span class="bg-gradient-to-r from-blue-600 to-gray-700 bg-clip-text text-transparent">
+        One-Rep Max Calculator
+      </span>
+    </h2>
+  </div>
+
   <!-- Main Content -->
   <div class="relative z-10">
     <!-- Calculator Card -->
     <div class="max-w-7xl mx-auto px-6 mb-16">
-      <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
+      <div class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8">
         <!-- Calculator Title -->
         <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">One-Rep Max Calculator</h2>
         
@@ -165,8 +164,8 @@ import WarmupLadder from './WarmupLadder.astro';
     <!-- Empty State -->
     <div id="empty-state" class="text-center py-12 px-6">
       <div class="max-w-md mx-auto">
-        <h2 class="text-2xl font-bold text-white mb-3">What is 1RM?</h2>
-        <p class="text-blue-100 leading-relaxed max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-800 mb-3">What is 1RM?</h2>
+        <p class="text-gray-700 leading-relaxed max-w-2xl mx-auto">
           Your one-rep max (1RM) is the maximum weight you can lift for a single repetition. 
           This calculator estimates it based on lighter weights and higher reps using proven scientific formulas.
         </p>
@@ -183,7 +182,7 @@ import WarmupLadder from './WarmupLadder.astro';
 
   <!-- Related Calculators Section -->
   <div class="max-w-4xl mx-auto px-6 mb-16">
-    <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-8">
+    <div class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8">
       <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Exercise-Specific Calculators</h3>
       <p class="text-gray-600 text-center mb-8">
         Get specialized 1RM estimates for specific exercises with form tips and strength standards.
